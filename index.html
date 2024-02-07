@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Valentine</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="qtns-container">
+        <div>
+            <p>To Open the Package, Answer the Questions below <span style="font-style: italic; text-shadow:3px 3px 4px blue">Correctly</span>.</p>
+            <div class="questions">
+                <div>
+                    <p>1. Where Did We First meet?</p>
+                    <div class="questions-container" id="first">
+                        
+                    </div>
+                </div><!--- Question 1 -->
+
+                <div>
+                    <p>2. How old is the Relationship now?</p>
+                    <div class="questions-container" id="second">
+                        
+                    </div>
+                </div><!--- Question 2 -->
+
+                <div>
+                    <p>3. Where was our Official First Date?</p>
+                    <div class="questions-container" id="third">
+                        
+                    </div>
+                </div><!--- Question 3 -->
+
+                <div>
+                    <p>4. Where do you think our honeymoon will be?</p>
+                    <div class="questions-container" id="forth">
+                        
+                    </div>
+                </div><!--- Question 4 -->
+            </div>
+
+            <div class="btn-container">
+                <button type="button" id="submit-btn">SUBMIT</button>
+            </div>
+        </div>
+    </div><!--- Questions -->
+    
+    <div class="response-container">
+        <p class="negative-response">
+            Damn! &#128532;
+        </p>
+        <p class="positive-response">
+            Thank You! &#128525;
+        </p>
+    </div><!--- Responses -->
+
+    <div class="valentine-container">
+        <p class="scroll">Scroll Down</p>
+        <div>
+            <div>
+                <img src="./images/kiss-gif-emoji.gif" alt="">
+            </div>
+            <div>
+                <img src="./images/valentines-day-icegif-9.gif" alt="">
+            </div>
+            <div>
+                <img src="./images/valentineslove.gif" alt="">
+            </div>
+        </div>
+        <p>
+            Will you be My Valentine Namujuzi Elizabeth?
+        </p>
+        <div class="val_btns">
+            <button class="yes-button">YES</button>
+            <button class="no-button">NO</button>
+        </div>
+    </div><!-- Valentines container -->
+
+    <script src="./jquery.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            //Hide the official container
+            $(".valentine-container").hide()
+            $(".response-container").hide()
+            $(".qtns-container").hide().slideDown(3000);
+
+            const location = ['Kampala', 'Ntinda', 'Wandegeya', 'Bukoto'];
+            const age = [8,6,7,10];
+            const official_date = ['Caramel','Mega Standard', 'Capital Kitchen', 'KFC-Lugogo'];
+            const honey_moon = ['Mauritius','Norway','Paris','Dubai'];
+
+            //Append questions data
+            //First Question
+            $.each(location, function(k,v){
+                var data = '\
+                <div>\
+                    <input type="radio" class="question-value" name="location" value="'+v+'">\
+                    <p class="question-label">'+v+'</p>\
+                </div>'
+
+                $("#first").append(data);
+            })
+
+            //Second Question
+            $.each(age, function(k,v){
+                var data = '\
+                <div>\
+                    <input type="radio" class="question-value" name="age" value="'+v+'">\
+                    <p class="question-label">'+v+'</p>\
+                </div>'
+
+                $("#second").append(data);
+            })
+
+            //Third Question
+            $.each(official_date, function(k,v){
+                var data = '\
+                <div>\
+                    <input type="radio" class="question-value" name="official" value="'+v+'">\
+                    <p class="question-label">'+v+'</p>\
+                </div>'
+
+                $("#third").append(data);
+            })
+
+            //Forth Question
+            $.each(honey_moon, function(k,v){
+                var data = '\
+                <div>\
+                    <input type="radio" class="question-value" name="honey_moon" value="'+v+'">\
+                    <p class="question-label">'+v+'</p>\
+                </div>'
+
+                $("#forth").append(data);
+            })
+
+            //On submitting
+            $("#submit-btn").on('click',function(){
+                console.log("button clicked")
+                const ans1 = ($("input[name='location']:checked").val()).toLowerCase();
+                const ans2 = parseInt($("input[name='age']:checked").val());
+                const ans3 = ($("input[name='official']:checked").val()).toLowerCase();
+                const ans4 = ($("input[name='honey_moon']:checked").val()).toLowerCase();
+
+                if(!(ans1 == undefined) && !(ans2 == undefined) && !(ans3 == undefined) && !(ans4 == undefined)){
+                    console.log("First = "+ans1);
+                    console.log("Second = "+ans2);
+                    console.log("Third = "+ans3);
+                    console.log("Forth = "+ans4);
+
+                    if(ans1 == 'wandegeya' && ans2 == 7 && ans3 == 'kfc-lugogo' && ans4 == 'mauritius'){
+                        //If the user passes all questions
+                        $(".valentine-container").hide().slideDown(3000)
+                        $(".qtns-container").hide();
+                    }else{
+                        //If the user fails
+                        alert("Sorry failed!, Try Again!");
+                        $('input').prop('checked',false);
+                    }
+                    
+                }else{
+                    alert('Select All Answers!');
+                }
+
+            })
+
+            var ad = "Check out more at https://github.com/BaddyM";
+            var width = $(window).width();
+
+            //Yes/No
+            $(".yes-button").on('click',function(){
+                $(".response-container").show();
+                $(".valentine-container").hide();
+                $(".negative-response").hide();
+                $(".positive-response").hide().slideDown(3000);
+                setTimeout(function(){
+                    if(width < 768){
+                        $(".positive-response").text(ad).css('font-size','40px').hide().slideDown(3000); 
+                    }else{
+                        $(".positive-response").text(ad).css('font-size','100px').hide().slideDown(3000); 
+                    }
+                },5000)
+            })
+
+            $(".no-button").on('click',function(){
+                $(".response-container").show();
+                $(".valentine-container").hide();
+                $(".negative-response").hide().slideDown(3000);
+                $(".positive-response").hide();
+                setTimeout(function(){
+                    if(width < 768){
+                        $(".negative-response").text(ad).css('font-size','40px').hide().slideDown(3000); 
+                    }else{
+                        $(".negative-response").text(ad).css('font-size','100px').hide().slideDown(3000); 
+                    }
+                },5000)
+            })
+        })
+    </script>
+</body>
+
+</html>
