@@ -83,6 +83,9 @@
     <script src="./jquery.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
+            $(document).bind('contextmenu',function(e){
+                return false;
+            })
             //Hide the official container
             $(".valentine-container").hide()
             $(".response-container").hide()
