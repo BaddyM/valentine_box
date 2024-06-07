@@ -22,14 +22,14 @@
                 </div><!--- Question 1 -->
 
                 <div>
-                    <p>2. How old is the Relationship now?</p>
+                    <p>2. How old is the Relationship now <strong><i>(months)</i></strong>?</p>
                     <div class="questions-container" id="second">
                         
                     </div>
                 </div><!--- Question 2 -->
 
                 <div>
-                    <p>3. Where was our Official First Date?</p>
+                    <p>3. Where will our Official First Date be?</p>
                     <div class="questions-container" id="third">
                         
                     </div>
@@ -72,7 +72,7 @@
             </div>
         </div>
         <p>
-            Will you be My Valentine Namujuzi Elizabeth?
+            Do you love me Nalikka Angel?
         </p>
         <div class="val_btns">
             <button class="yes-button">YES</button>
@@ -93,8 +93,8 @@
             $(".response-container").hide()
             $(".qtns-container").hide().slideDown(3000);
 
-            const location = ['Kampala', 'Ntinda', 'Wandegeya', 'Bukoto'];
-            const age = [8,6,7,10];
+            const location = ['Kampala', 'Ntinda', 'Wandegeya', 'Wakiso'];
+            const age = [8,6,7,1];
             const official_date = ['Caramel','Mega Standard', 'Capital Kitchen', 'KFC-Lugogo'];
             const honey_moon = ['Mauritius','Norway','Paris','Dubai'];
 
@@ -152,12 +152,8 @@
                 const ans4 = ($("input[name='honey_moon']:checked").val()).toLowerCase();
 
                 if(!(ans1 == undefined) && !(ans2 == undefined) && !(ans3 == undefined) && !(ans4 == undefined)){
-                    console.log("First = "+ans1);
-                    console.log("Second = "+ans2);
-                    console.log("Third = "+ans3);
-                    console.log("Forth = "+ans4);
-
-                    if(ans1 == 'wandegeya' && ans2 == 7 && ans3 == 'kfc-lugogo' && ans4 == 'mauritius'){
+                    //Check Answers
+                    if(ans1 == 'wakiso' && ans2 == 1 && ans3 == 'caramel' && ans4 == 'mauritius'){
                         //If the user passes all questions
                         $(".valentine-container").hide().slideDown(3000)
                         $(".qtns-container").hide();
